@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import "./css/Signup.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { render } from "@testing-library/react";
 import {
   createMuiTheme,
   ThemeProvider,
@@ -11,7 +9,6 @@ import {
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { Form } from "reactstrap";
-import Login from "./Login";
 
 const theme = createMuiTheme({
   palette: {
@@ -46,16 +43,16 @@ class Signup extends Component {
 
   register(event) {
     const { firstname, lastname, email, phone } = this.state;
-    fetch("/register", {
-      method: "POST",
+    fetch('/register', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          email: this.state.email,
-          phone: this.state.phone
+          firstname: firstname,
+          lastname: lastname,
+          email: email,
+          phone: phone
       })
     }).then((Response) => Response.json())
       .then((Results) => {
@@ -80,7 +77,8 @@ class Signup extends Component {
             <TextField
               required
               variant="standard"
-              type="string"
+              type="firstname"
+              value={this.state.firstname}
               color="primary"
               style={style}
               label="First Name"
@@ -89,7 +87,8 @@ class Signup extends Component {
             <TextField
               required
               variant="standard"
-              type="string"
+              type="lastname"
+              value={this.state.lastname}
               color="primary"
               style={style}
               label="Last Name"
@@ -99,7 +98,8 @@ class Signup extends Component {
             <TextField
               required
               variant="standard"
-              type="string"
+              type="email"
+              value={this.state.email}
               color="primary"
               style={style}
               label="Email"
@@ -109,7 +109,8 @@ class Signup extends Component {
             <TextField
               required
               variant="standard"
-              type="string"
+              type="phone"
+              value={this.state.phone}
               color="primary"
               style={style}
               label="Phone Number"
@@ -138,9 +139,6 @@ class Signup extends Component {
               Log in here
             </Button>
             <br />
-            <Button variant="contained" color="primary" style={style}>
-              Extra button for database content dump
-            </Button>
           </ThemeProvider>
         </Form>
       </div>
