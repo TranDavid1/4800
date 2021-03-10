@@ -34,33 +34,21 @@ class Signup extends Component {
       phone: "",
     };
 
-    this.firstname = this.firstname.bind(this);
-    this.lastname = this.lastname.bind(this);
-    this.email = this.email.bind(this);
-    this.phone = this.phone.bind(this);
+    this.register = this.register.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  firstname(event) {
-    this.setState({ firstname: event.target.value });
-  }
-
-  lastname(event) {
-    this.setState({ lastname: event.target.value });
-  }
-
-  email(event) {
-    this.setState({ email: event.target.value });
-  }
-
-  phone(event) {
-    this.setState({ phone: event.target.value });
+  handleChange(event) {
+    this.setState({ 
+      [event.target.name]: event.target.value
+    });
   }
 
   register(event) {
-    fetch("", {
-      method: "post",
+    const { firstname, lastname, email, phone } = this.state;
+    fetch("/register", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
@@ -96,9 +84,7 @@ class Signup extends Component {
               color="primary"
               style={style}
               label="First Name"
-              onChange={(event, newValue) =>
-                this.setState({ first_name: newValue })
-              }
+              onChange={this.handleChange}
             ></TextField>
             <TextField
               required
@@ -107,9 +93,7 @@ class Signup extends Component {
               color="primary"
               style={style}
               label="Last Name"
-              onChange={(event, newValue) =>
-                this.setState({ last_name: newValue })
-              }
+              onChange={this.handleChange}
             ></TextField>
             <br />
             <TextField
@@ -119,7 +103,7 @@ class Signup extends Component {
               color="primary"
               style={style}
               label="Email"
-              onChange={(event, newValue) => this.setState({ email: newValue })}
+              onChange={this.handleChange}
             ></TextField>
             <br />
             <TextField
@@ -129,12 +113,11 @@ class Signup extends Component {
               color="primary"
               style={style}
               label="Phone Number"
-              onChange={(event, newValue) =>
-                this.setState({ phoneNumber: newValue })
-              }
+              onChange={this.handleChange}
             ></TextField>
             <br />
             <Button
+              type="submit"
               onClick={this.register}
               variant="contained"
               color="primary"
