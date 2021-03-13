@@ -70,7 +70,7 @@ class Login extends Component {
               </div>
               <br />
               <div classname="signInFields">
-                <Button variant="contained" type="submit" color="primary" style={style}>
+                <Button component={Link} to="/Home" variant="contained" type="submit" color="primary" style={style}>
                   Sign In
                 </Button>
               </div>
