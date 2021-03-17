@@ -9,7 +9,8 @@ import "./css/Login.css";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Result } from "express-validator";
-
+import Img from "./images/GroceryStore.jpg";
+import Img2 from "./images/cartoondelivery.jpg";
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -153,7 +154,32 @@ class Login extends Component {
 
           </div>
         </div>
+        // add new here
+        <div className="row">
+          <div className="leftColumn3">
+            <h2 className="localStoresHeading">
+              Support Local Grocery Stores
+                        </h2>
+            <div className="localStoresBody">
+              <div>
+                Shopping local helps local businesses and it also means your groceries
+                arrive in a timely manner.
+                            </div>
+              <img src={Img} alt="groceryStore" width="auto" height="150" />
+            </div>
+          </div>
+          <div className="rightColumn3">
+            <h2 className="driversHeading">
+              Great Delivery Drivers
+                        </h2>
+            <div className="driversBody">
+              Our delivery drivers are carefully selected in order to ensure great service.
+                        </div>
+            <img src={Img2} alt="deliverydriver" width="auto" height="150" />
+          </div>
+        </div>
       </div>
+
     );
   }
 }

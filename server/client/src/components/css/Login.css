@@ -3,89 +3,143 @@
     font-weight: 700;
     margin-top: 25px;
 }
-
+  
 .signInHeading {
-    font-family: Merriweather-Regular;
-    font-weight: 100;
-    margin-top: 20px;
+font-family: Merriweather-Regular;
+font-weight: 100;
+margin-top: 20px;
 }
 
 .loginContainer {
-    font-family: Arial;
+font-family: Arial;
 }
 
 .body {
-    font-family: Arial;
-    font-weight: 100;
-    font-size: medium;
+font-family: Arial;
+font-weight: 100;
+font-size: medium;
 }
 
 .row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+width: 100;
 }
 
 .leftColumn {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
 }
 
 .rightColumn {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
 }
 
+.rightColumn::after {
+content: "";
+background: url("../images/delivery.jpg");
+top: 0;
+left: 0;
+bottom: 0;
+right: 50%;
+position: absolute;
+z-index: -1;
+opacity: 0.5;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: calc(100vh-60px);
+width: auto;
+}
 .leftColumn::after {
-    content: "";
-    background: url("../images/background.jpg");
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-    opacity: 0.45;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: "100%";
-    width: "100%";
+content: "";
+background: url("../images/background.jpg");
+top: 0;
+left: 50%;
+bottom: 0;
+right: 0;
+position: absolute;
+z-index: -1;
+opacity: 0.45;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+height: calc(100vh-60px);
+width: auto;
 }
 
 .leftColumn2 {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
 }
 
 .rightColumn2 {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
+}
+
+.leftColumn3 {
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
+}
+
+.rightColumn3 {
+display: flex;
+flex-direction: column;
+flex-basis: 100%;
+flex: 1;
+}
+
+.localStoresHeading {
+font-family: Merriweather-Regular;
+font-weight: 700;
+margin-top: 40%;
+}
+
+.localStoresBody {
+font-family: Arial;
+margin-top: 1%;
+padding-bottom: 100px;
+}
+
+.driversHeading {
+font-family: Merriweather-Regular;
+font-weight: 700;
+margin-top: 40%;
+}
+
+.driversBody {
+font-family: Arial;
+margin-top: 1%;
+padding-bottom: 0px;
 }
 
 .signInFields {
-    align-items: center;
+align-items: center;
 }
 
 .leftColumnHeading {
-    font-family: Merriweather-Bold;
-    text-align: center;
-    margin-top: 20px;
+font-family: Merriweather-Bold;
+text-align: center;
+margin-top: 20px;
 }
 
-.leftColumnBody{
-    font-family: Arial;
-    font-weight: normal;
-    text-align: left;
-    margin-left: 20px;
-    margin-top: 10px;
+.leftColumnBody {
+font-family: Arial;
+font-weight: normal;
+text-align: left;
+margin-left: 20px;
+margin-top: 10px;
 }
