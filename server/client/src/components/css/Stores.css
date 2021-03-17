@@ -1,49 +1,55 @@
 .storesContainer {
+    margin-top: 25;
     position: relative;
     width: 50%;
     align-items: center;
 }
 
-.add-form-button {
-    margin-bottom: 10px;
-    margin-left: 10px;
+.storesHeading {
+    font-family: Merriweather-Bold;
+    font-weight: 700;
+    margin-top: 25px;
+    font-size: 40px;
 }
 
-.dynamic-form {
+.storePhoto {
+    max-height: "60px";
+    max-width: "300px";
+    min-height: "60px";
+}
+
+.storeDetails {
+    font-family: Arial;
     padding: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.storeImg {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.imgOverlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 10em;
-    width: 100%;
-    opacity: 0;
-    transition: 0.5s ease;
-    background-color: rgb(6, 193, 103);
-}
-
-.storesContainer:hover .imgOverlay {
-    opacity: 1;
+    margin: 5px;
 }
 
 .storeName {
-    color: white;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.storeAddress {
+    font-size: 15px;
+    position: relative;
+    min-width: 300px;
+}
+
+.storePhone {
+    font-size: 15px;
+    position: relative;
+}
+
+.storeButton {
+    position: relative;
+    padding: 10px;
+    justify-content: center;
+}
+
+.buttonStyles {
+    max-width: 100px;
+    max-height: 100px;
+    min-width: 100px;
+    min-height: 100px;
 }

@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import "./css/Stores.css";
-import {
-    Button,
-    createMuiTheme,
-    ThemeProvider,
-} from "@material-ui/core";
+import { Button, createMuiTheme, ThemeProvider } from "@material-ui/core";
 import DynamicForm from "./DynamicForm";
-import AuthenticationService from "./Authentication"
+import AuthenticationService from "./Authentication";
+
 const theme = createMuiTheme({
     palette: {
         primary: {
             main: "#06C167",
         },
         secondary: {
+            main: "#06C167",
+        },
+        background: {
             main: "#06C167",
         },
     },
@@ -29,11 +29,8 @@ class Stores extends Component {
             phone: "",
             item: [],
             isLoaded: false,
-            images: [
-                {
-                    walmart: "https://1000logos.net/wp-content/uploads/2017/05/Walmart-logo.png",
-                },
-            ],
+            photo:
+                "https://1000logos.net/wp-content/uploads/2017/05/Walmart-logo.png",
         };
         this.logout = this.logout.bind(this);
         this.getData = this.getData.bind(this);
@@ -41,14 +38,14 @@ class Stores extends Component {
     logout = () => {
         console.log("trying to log out");
         AuthenticationService.signOut();
-        this.props.history.push('/');
+        this.props.history.push("/");
         window.location.reload();
-    }
+    };
     getData(event) {
         fetch("/home/stores", {
             method: "POST",
             headers: {
-                "Accept": "application/json",
+                Accept: "application/json",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({}),
@@ -127,34 +124,60 @@ class Stores extends Component {
         } else {
             return (
                 <div className="App">
-                    {/*}
-                    <div classname="storeImg">
-                        <img src={this.state.images[0]} />
-                    </div>
-                    <div className="imgOverlay">
-                    */}
-                    <ul>
-                        {items.map((item) => (
-                            <li key={item.id}>
-                                Store: {item.storeID} Name: {item.name} Address: {item.address} Phone number: {item.phone}
-                            </li>
-                        ))}
-                    </ul>
-                    <div>
-                        <Button
-                            onClick={this.logout}
-                            variant="contained"
-                            style={style}
-                            color="primary"
-                        >
-                            log out
-                        </Button>
-                    </div>
+                    <ThemeProvider theme={theme}>
+                        <Navbar />
+                        <div className="storesHeading">Featured Stores</div>
+                        {/*}
+                        <div classname="storeImg">
+                            <img src={this.state.images[0]} />
+                        </div>
+                        <div className="imgOverlay">
+                        */}
+                        <ul>
+                            {items.map((item) => (
+                                <li key={item.id}>
+                                    <div className="storeButton">
+                                        <Button
+                                            /*href or onClick to redirect user*/
+                                            variant="contained"
+                                            background-color="primary"
+                                        >
+                                            <img
+                                                className="storePhoto"
+                                                src={item.photo}
+                                            ></img>
+                                            <div className="storeDetails">
+                                                <div className="storeName">
+                                                    {item.name}
+                                                </div>
+                                                <div className="storeAddress">
+                                                    {item.address}
+                                                </div>
+                                                <div className="storePhone">
+                                                    {item.phone}
+                                                </div>
+                                            </div>
+                                        </Button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                        <div>
+                            <Button
+                                onClick={this.logout}
+                                variant="contained"
+                                style={style}
+                                color="primary"
+                            >
+                                log out
+                            </Button>
+                        </div>
+                    </ThemeProvider>
                 </div>
                 /*
             </div>
             */
-            )
+            );
         }
     }
 }
