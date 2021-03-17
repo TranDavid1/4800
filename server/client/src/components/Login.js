@@ -8,6 +8,7 @@ import {
 import "./css/Login.css";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import { Result } from "express-validator";
 
 const theme = createMuiTheme({
   palette: {
@@ -26,9 +27,45 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      accesstoken: "",
+      // message: ""
     };
-  }
 
+    this.handleChange = this.handleChange.bind(this);
+    this.signin = this.signin.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+  // Testing
+  signin = () => {
+    const { email, password } = this.state;
+    fetch('/login', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    }).then((Response) => Response.json())
+      .then((json) => {
+        if (json.message) {
+          console.log(json.message);
+          alert("User does not exist");
+        } else {
+          this.setState({
+            accesstoken: "Bearer " + json.accesstoken
+          })
+          console.log(this.state.accesstoken);
+          localStorage.setItem("user", JSON.stringify(json));
+          this.props.history.push("/home/stores");
+        }
+      })
+  }
   render() {
     return (
       <div className="loginContainer">
@@ -49,35 +86,50 @@ class Login extends Component {
               </h2>
             </div>
             <ThemeProvider theme={theme}>
-              <div classname="signInFields">
+              <div className="signInFields">
                 <TextField
                   variant="standard"
                   type="email"
+                  name="email"
                   label="Email"
                   color="primary"
-                  onChange = {(event, newValue) => this.setState({username:newValue})}
+                  value={this.state.email}
+                  onChange={this.handleChange}
                 ></TextField>
               </div>
               <br />
-              <div classname="signInFields">
+              <div className="signInFields">
                 <TextField
                   variant="standard"
                   type="password"
+                  name="password"
                   label="Password"
                   color="primary"
-                  onChange = {(event, newValue) => this.setState({password:newValue})}
+                  value={this.state.password}
+                  onChange={this.handleChange}
                 ></TextField>
               </div>
               <br />
-              <div classname="signInFields">
-                <Button variant="contained" type="submit" color="primary" style={style}>
+              <div className="signInFields">
+                <Button
+                  onClick={this.signin}
+                  /*component={Link} to="/Stores"*/
+                  variant="contained"
+                  type="submit"
+                  color="primary"
+                  style={style}>
                   Sign In
                 </Button>
               </div>
               <div>
                 <h3>
                   New to Growceries?
-                  <Button component={Link} to="/Signup" variant="contained" color="primary" style={style}>
+                  <Button
+                    component={Link}
+                    to="/Signup"
+                    variant="contained"
+                    color="primary"
+                    style={style}>
                     Sign up here
                 </Button>
                 </h3>
@@ -88,7 +140,7 @@ class Login extends Component {
         <div className="row">
           <div className="leftColumn2">
             <div className="leftColumnHeading">
-                Why choose Growceries?
+              Why choose Growceries?
             </div>
             <div className="leftColumnBody">
               <div>
